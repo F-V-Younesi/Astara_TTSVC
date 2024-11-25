@@ -1,0 +1,28 @@
+from pathlib import Path
+from flask import Flask, render_template, request
+import os
+from voicecloning import *
+
+
+app = Flask(__name__)
+
+# routes
+@app.route("/", methods=['GET', 'POST'])
+def main():
+	return render_template("index.html")
+
+
+@app.route("/submit", methods = ['GET', 'POST'])
+def get_output():
+	if request.method == 'POST':
+		text = request.form['textarea']
+		speaker_name=request.form['options']
+		p=prediction(text,speaker_name)
+
+
+	return render_template("index.html" ,prediction=p , file_path = file_path)
+
+
+if __name__ =='__main__':
+	# app.debug = True
+	app.run(debug = True)

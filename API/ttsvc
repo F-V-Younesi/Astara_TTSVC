@@ -1,0 +1,16 @@
+
+import os
+
+
+def tts(ebtext,speaker_name):
+  # !python infer.py  --speaker geek --checkpoint checkpoint.pt --output-dir ./out --text %ebtext
+  massage="python infer.py  --speaker "+ speaker_name +" --checkpoint checkpoint.pt --output-dir ./static"+"  --text "+ "'"+ebtext+"'"
+  os.system(massage)
+
+def inference():
+	os.system('svc infer '+'/static/sample_0.wav'+' -m /home/younesi/HebTTS -c /home/younesi/HebTTS/config.json')
+	return "The operation successfully done!"
+
+def prediction(ebtext,speaker_name):
+	tts(ebtext,speaker_name)
+	inference()
